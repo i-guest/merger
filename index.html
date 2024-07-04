@@ -40,7 +40,7 @@
             padding: 1rem;;
             display: block;
             font-size: 0.8rem;
-            /* flex: auto 1 1; */
+            flex: auto 1 1;
         }
 
         textarea::placeholder 
@@ -63,6 +63,7 @@
     <button class="merger-alt-btn">merger-alt</button>
     <button class="merger-tab-btn">merger-tab</button>
     <button class="empty-lines-btn">clean-inp</button>
+    <button class="paste-btn">paste-inp</button>
     <button class="copy-btn">copy-outp</button>
     <button class="clear-btn">clear-inp</button>
 </div>
@@ -195,6 +196,18 @@ document.querySelector(".empty-lines-btn").onclick = function()
     str = str.replace(/:\s*$|^(?=\n)$|^\s*|\s*$|\n\n+/gm, '')
     
     input.value = str;
+}
+
+document.querySelector(".paste-btn").onclick = function()
+{
+    let input = document.querySelector("#input");
+    navigator.clipboard.readText()
+        .then(copied => {
+            input.value = copied;
+        })
+        .catch(err => {
+            console.error('Failed to read clipboard contents: ', err);
+        });
 }
 
 document.querySelector(".copy-btn").onclick = function()
