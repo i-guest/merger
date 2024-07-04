@@ -29,20 +29,30 @@
             width: calc(100vw - 5rem);
             margin: 1rem auto;
             display: flex;
-            gap: 1rem;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            justify-content: space-between;
         }
 
         div button
         {
+            
             padding: 1rem;;
             display: block;
             font-size: 0.8rem;
-            flex: auto 1 1;
+            /* flex: auto 1 1; */
         }
 
         textarea::placeholder 
         {
             text-align: center;
+        }
+
+        pre
+        {
+            font-size: 0.3rem;
+            border: 2px solid #222;
+            width: 100%;
         }
     </style>
 </head>
@@ -50,37 +60,38 @@
 
 <textarea name="" id="input" cols="30" rows="20" placeholder="input"></textarea>
 <div>
-    <button class="merger-alt">merger-alt</button>
-    <button class="merger-tab">merger-tab</button>
-    <button class="copy-btn">copy</button>
+    <button class="merger-alt-btn">merger-alt</button>
+    <button class="merger-tab-btn">merger-tab</button>
+    <button class="empty-lines-btn">clean-inp</button>
+    <button class="copy-btn">copy-outp</button>
     <button class="clear-btn">clear-inp</button>
 </div>
 <textarea name="" id="output" cols="30" rows="20"  placeholder="output"></textarea>
 
-<script>
-
-document.querySelector(".merger-alt").onclick = function()
+<div>
+<pre>
+document.querySelector(".merger-alt-btn").onclick = function()
 {
     let input = document.querySelector("#input");
     let output = document.querySelector("#output");
 
     let str = input.value;
+
+    str = str.replace(/:\s*$|^(?=\n)$|^\s*|\s*$|\n\n+/gm, '')
+    
+
+
     console.log(str);
 
-    newStr = "";
+    let newStr = "";
     for(let i = 0 ; i < str.split('\n').length;i += 1)
     {
-        if(i % 4 == 0)
-        {
-            
+        if(i % 2== 0)
+        { 
             let left = str.split('\n')[i];
-            if(left[left.length - 1]==':')
-            {
-                left = left.substring(0, left.length - 1);
-            }
 
             newStr += left + ' is ';
-            newStr += str.split('\n')[i + 2];
+            newStr += str.split('\n')[i + 1];
             newStr += '\n'; 
         }
     }
@@ -89,7 +100,7 @@ document.querySelector(".merger-alt").onclick = function()
     output.value = newStr;
 }
 
-document.querySelector(".merger-tab").onclick = function()
+document.querySelector(".merger-tab-btn").onclick = function()
 {
     let input = document.querySelector("#input");
     let output = document.querySelector("#output");
@@ -97,8 +108,71 @@ document.querySelector(".merger-tab").onclick = function()
     let str = input.value;
     console.log(str);
 
+
     newStr = "";
-    let tabs = str.split('\n\n');
+    let tabs = str.split('\n\n\n');
+
+    let left = tabs[0].split('\n');
+    let right = tabs[1].split('\n');
+
+    for(let i = 0 ; i < left.length;i += 1)
+    {
+        newStr += left[i]+' is '+right[i];
+        newStr+='\n';
+    }
+
+
+    output.value = newStr;
+}
+
+</pre>
+
+</div>
+
+
+<script>
+
+document.querySelector(".merger-alt-btn").onclick = function()
+{
+    let input = document.querySelector("#input");
+    let output = document.querySelector("#output");
+
+    let str = input.value;
+
+    str = str.replace(/:\s*$|^(?=\n)$|^\s*|\s*$|\n\n+/gm, '')
+    
+
+
+    console.log(str);
+
+    let newStr = "";
+    for(let i = 0 ; i < str.split('\n').length;i += 1)
+    {
+        if(i % 2== 0)
+        { 
+            let left = str.split('\n')[i];
+
+            newStr += left + ' is ';
+            newStr += str.split('\n')[i + 1];
+            newStr += '\n'; 
+        }
+    }
+
+
+    output.value = newStr;
+}
+
+document.querySelector(".merger-tab-btn").onclick = function()
+{
+    let input = document.querySelector("#input");
+    let output = document.querySelector("#output");
+
+    let str = input.value;
+    console.log(str);
+
+
+    newStr = "";
+    let tabs = str.split('\n\n\n');
 
     let left = tabs[0].split('\n');
     let right = tabs[1].split('\n');
@@ -114,6 +188,15 @@ document.querySelector(".merger-tab").onclick = function()
 }
 
 
+document.querySelector(".empty-lines-btn").onclick = function()
+{
+    let input = document.querySelector("#input");;
+    let str = input.value;
+    str = str.replace(/:\s*$|^(?=\n)$|^\s*|\s*$|\n\n+/gm, '')
+    
+    input.value = str;
+}
+
 document.querySelector(".copy-btn").onclick = function()
 {
     let output = document.querySelector("#output");
@@ -125,6 +208,8 @@ document.querySelector(".clear-btn").onclick = function()
     let input = document.querySelector("#input");
     input.value = '';
 }
+
+
 
 </script>
 
