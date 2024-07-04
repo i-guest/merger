@@ -8,7 +8,7 @@
         *
         {
             padding: 0;
-            margin: 0px;
+            margin: 0;
             font-family: monospace;
             box-sizing: border-box;
         }
@@ -97,7 +97,7 @@ document.querySelector(".merger-tab").onclick = function()
 
     for(let i = 0 ; i < left.length;i += 1)
     {
-        newStr += left[i]+' = '+right[i];
+        newStr += left[i]+' is '+right[i];
         newStr+='\n';
     }
 
