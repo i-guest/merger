@@ -70,9 +70,15 @@ document.querySelector(".merger-alt").onclick = function()
     {
         if(i % 4 == 0)
         {
-            newStr += str.split('\n')[i] 
-            + '  :  '
-            + str.split('\n')[i + 2];
+            
+            let left = str.split('\n')[i];
+            if(left[left.length - 1]==':')
+            {
+                left = left.substring(0, left.length - 1);
+            }
+
+            newStr += left + ' is ';
+            newStr += str.split('\n')[i + 2];
             newStr += '\n'; 
         }
     }
