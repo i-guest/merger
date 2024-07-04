@@ -36,6 +36,7 @@
         {
             padding: 1rem;;
             display: block;
+            font-size: 0.8rem;
             flex: auto 1 1;
         }
 
@@ -52,6 +53,7 @@
     <button class="merger-alt">merger-alt</button>
     <button class="merger-tab">merger-tab</button>
     <button class="copy-btn">copy</button>
+    <button class="clear-btn">clear-inp</button>
 </div>
 <textarea name="" id="output" cols="30" rows="20"  placeholder="output"></textarea>
 
@@ -116,6 +118,12 @@ document.querySelector(".copy-btn").onclick = function()
 {
     let output = document.querySelector("#output");
     navigator.clipboard.writeText(output.value);
+}
+
+document.querySelector(".clear-btn").onclick = function()
+{
+    let input = document.querySelector("#input");
+    input.value = '';
 }
 
 </script>
