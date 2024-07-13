@@ -43,6 +43,15 @@
             flex: auto 1 1;
         }
 
+        div input
+        {
+            
+            padding: 1rem;;
+            display: block;
+            font-size: 0.9rem;
+            flex: auto 0 0;
+        }
+
         textarea::placeholder 
         {
             text-align: center;
@@ -60,6 +69,7 @@
 
 <textarea name="" id="input" cols="30" rows="20" placeholder="input"></textarea>
 <div>
+    <input  class="sepr-text" type="text" value=" is "> 
     <button class="merger-alt-btn">merger-alt</button>
     <button class="merger-tab-btn">merger-tab</button>
     <button class="empty-lines-btn">clean-inp</button>
@@ -84,13 +94,14 @@ document.querySelector(".merger-alt-btn").onclick = function()
     console.log(str);
 
     let newStr = "";
+    let septr =  document.querySelector(".sepr-text").value;
     for(let i = 0 ; i < str.split('\n').length;i += 1)
     {
-        if(i % 2== 0)
+        <strong><u>if(i % 2== 0)</u></strong>
         { 
             let left = str.split('\n')[i];
 
-            newStr += left + ' is ';
+            newStr += left + septr;
             newStr += str.split('\n')[i + 1];
             newStr += '\n'; 
         }
@@ -110,21 +121,21 @@ document.querySelector(".merger-tab-btn").onclick = function()
 
 
     newStr = "";
-    let tabs = str.split('\n\n\n');
+    let tabs = <strong><u>str.split('\n\n\n')</u></strong>;
 
     let left = tabs[0].split('\n');
     let right = tabs[1].split('\n');
 
+    let septr =  document.querySelector(".sepr-text").value;
     for(let i = 0 ; i < left.length;i += 1)
     {
-        newStr += left[i]+' is '+right[i];
+        newStr += left[i]+ septr +right[i];
         newStr+='\n';
     }
 
 
     output.value = newStr;
 }
-
 </pre>
 
 </div>
@@ -146,13 +157,14 @@ document.querySelector(".merger-alt-btn").onclick = function()
     console.log(str);
 
     let newStr = "";
+    let septr =  document.querySelector(".sepr-text").value;
     for(let i = 0 ; i < str.split('\n').length;i += 1)
     {
         if(i % 2== 0)
         { 
             let left = str.split('\n')[i];
 
-            newStr += left + ' is ';
+            newStr += left + septr;
             newStr += str.split('\n')[i + 1];
             newStr += '\n'; 
         }
@@ -177,9 +189,10 @@ document.querySelector(".merger-tab-btn").onclick = function()
     let left = tabs[0].split('\n');
     let right = tabs[1].split('\n');
 
+    let septr =  document.querySelector(".sepr-text").value;
     for(let i = 0 ; i < left.length;i += 1)
     {
-        newStr += left[i]+' is '+right[i];
+        newStr += left[i]+ septr +right[i];
         newStr+='\n';
     }
 
